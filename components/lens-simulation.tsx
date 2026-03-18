@@ -334,8 +334,6 @@ function Scene({
         maxPolarAngle={Math.PI / 2}
         target={[-1, 0, 0]}
       />
-      
-      <Environment preset="studio" />
     </>
   )
 }
