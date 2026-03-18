@@ -398,7 +398,7 @@ export function LensSimulation({ focalLength, onDistanceChange, onComplete }: Le
   return (
     <div className="relative w-full">
       {/* 3D 视图 */}
-      <div className="w-full aspect-[16/10] bg-gradient-to-b from-sky-100 to-sky-50 rounded-2xl overflow-hidden border-2 border-border shadow-lg">
+      <div className="w-full h-[56vh] lg:h-[76vh] bg-gradient-to-b from-sky-100 to-sky-50 rounded-2xl overflow-hidden border-2 border-border shadow-lg">
         <Canvas
           camera={{ position: [0, 2, 8], fov: 50 }}
           gl={{ antialias: true }}

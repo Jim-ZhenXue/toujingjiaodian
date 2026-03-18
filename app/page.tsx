@@ -35,7 +35,7 @@ export default function ConvexLensGame() {
     <main className="min-h-screen bg-background">
       {/* 头部 */}
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="w-full px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-primary p-2 rounded-xl">
               <Sun className="w-6 h-6 text-primary-foreground" />
@@ -54,7 +54,7 @@ export default function ConvexLensGame() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="w-full px-4 sm:px-6 py-8">
         <AnimatePresence mode="wait">
           {/* 介绍页面 */}
           {phase === "intro" && (
@@ -152,57 +152,61 @@ export default function ConvexLensGame() {
               transition={{ duration: 0.5 }}
               className="space-y-6"
             >
-              {/* 实验指导 */}
-              <div className="bg-accent/10 rounded-2xl p-4 border border-accent/20">
-                <div className="flex items-start gap-3">
-                  <div className="bg-accent/20 p-2 rounded-lg shrink-0">
-                    <Sparkles className="w-5 h-5 text-accent-foreground" />
+              <div className="grid gap-6 lg:gap-8 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:items-start">
+                {/* 左侧文字区 */}
+                <div className="space-y-4 lg:sticky lg:top-24">
+                  {/* 实验指导 */}
+                  <div className="bg-accent/10 rounded-2xl p-4 border border-accent/20">
+                    <div className="flex items-start gap-3">
+                      <div className="bg-accent/20 p-2 rounded-lg shrink-0">
+                        <Sparkles className="w-5 h-5 text-accent-foreground" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">实验任务</h3>
+                        <p className="text-sm text-muted-foreground">
+                          拖动右侧的纸片，观察光斑大小的变化。尝试找到最小光斑的位置，
+                          然后故意偏离这个位置，记录此时的距离 L，点击"开始答题"。
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">实验任务</h3>
-                    <p className="text-sm text-muted-foreground">
-                      拖动右侧的纸片，观察光斑大小的变化。尝试找到最小光斑的位置，
-                      然后故意偏离这个位置，记录此时的距离 L，点击"开始答题"。
-                    </p>
+
+                  {/* 提示卡片 */}
+                  <div className="bg-card rounded-2xl p-4 border border-border">
+                    <div className="flex items-center gap-4">
+                      <div className="bg-primary/10 p-3 rounded-xl">
+                        <BookOpen className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm text-muted-foreground">
+                          <strong className="text-foreground">提示：</strong>
+                          当纸片在焦点位置时，光斑最小最亮。偏离焦点后，光斑会变大变暗。
+                        </p>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* 开始答题按钮 */}
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button
+                      onClick={handleCompleteExperiment}
+                      size="lg"
+                      className="w-full h-12 text-lg font-medium"
+                    >
+                      开始答题
+                    </Button>
+                  </motion.div>
+                </div>
+
+                {/* 右侧模拟器区（尽量占空间） */}
+                <div className="min-w-0">
+                  <LensSimulation
+                    focalLength={actualFocalLength}
+                    onDistanceChange={handleDistanceChange}
+                    onComplete={handleCompleteExperiment}
+                  />
                 </div>
               </div>
-
-              {/* 模拟器 */}
-              <LensSimulation
-                focalLength={actualFocalLength}
-                onDistanceChange={handleDistanceChange}
-                onComplete={handleCompleteExperiment}
-              />
-
-              {/* 提示卡片 */}
-              <div className="bg-card rounded-2xl p-4 border border-border">
-                <div className="flex items-center gap-4">
-                  <div className="bg-primary/10 p-3 rounded-xl">
-                    <BookOpen className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-muted-foreground">
-                      <strong className="text-foreground">提示：</strong>
-                      当纸片在焦点位置时，光斑最小最亮。偏离焦点后，光斑会变大变暗。
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* 开始答题按钮 */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  onClick={handleCompleteExperiment}
-                  size="lg"
-                  className="w-full h-12 text-lg font-medium"
-                >
-                  开始答题
-                </Button>
-              </motion.div>
             </motion.div>
           )}
 
@@ -227,7 +231,7 @@ export default function ConvexLensGame() {
 
       {/* 页脚 */}
       <footer className="border-t border-border mt-12">
-        <div className="max-w-4xl mx-auto px-4 py-6">
+        <div className="w-full px-4 sm:px-6 py-6">
           <p className="text-center text-sm text-muted-foreground">
             初中物理 · 光学 · 凸透镜成像规律
           </p>
