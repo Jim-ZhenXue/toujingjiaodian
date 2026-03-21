@@ -132,7 +132,7 @@ function LightRays({ focalLength, paperDistance }: { focalLength: number; paperD
                   itemSize={3}
                 />
               </bufferGeometry>
-              <lineBasicMaterial color="#FFD700" linewidth={2} transparent opacity={0.8} />
+              <lineBasicMaterial color="#FFFFFF" linewidth={2} transparent opacity={0.8} />
             </line>
             
             {/* 光屏前的光线 */}
@@ -145,7 +145,7 @@ function LightRays({ focalLength, paperDistance }: { focalLength: number; paperD
                   itemSize={3}
                 />
               </bufferGeometry>
-              <lineBasicMaterial color="#FFD700" linewidth={2} transparent opacity={0.6} />
+              <lineBasicMaterial color="#FFFFFF" linewidth={2} transparent opacity={0.6} />
             </line>
           </group>
         )
@@ -204,7 +204,7 @@ function Paper({
       <mesh ref={meshRef} rotation={[0, Math.PI / 2, 0]}>
         <planeGeometry args={[2.5, 3]} />
         <meshStandardMaterial 
-          color="#1a1a1a" 
+          color="#22c55e" 
           side={THREE.DoubleSide}
           roughness={0.9}
         />
@@ -274,7 +274,7 @@ function Ground() {
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.5, 0]}>
       <planeGeometry args={[20, 20]} />
-      <meshStandardMaterial color="#f0f0f0" transparent opacity={0.5} />
+      <meshStandardMaterial color="#000000" transparent opacity={0.9} />
     </mesh>
   )
 }
@@ -398,7 +398,7 @@ export function LensSimulation({ focalLength, onDistanceChange, onComplete }: Le
   return (
     <div className="relative w-full">
       {/* 3D 视图 */}
-      <div className="w-full h-[56vh] lg:h-[76vh] bg-gradient-to-b from-sky-100 to-sky-50 rounded-2xl overflow-hidden border-2 border-border shadow-lg">
+      <div className="w-full h-[56vh] lg:h-[76vh] bg-black rounded-2xl overflow-hidden border-2 border-border shadow-lg">
         <Canvas
           camera={{ position: [0, 2, 8], fov: 50 }}
           gl={{ antialias: true }}
